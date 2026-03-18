@@ -1,0 +1,5 @@
+feat(shared): 汎用UIコンポーネントとユーティリティの実装
+
+後続機能（操作パネル等）で共通して使用するUI部品群（spinner, error-message, empty-state, select, toggle）と、
+不要な再描画を防ぐためのdebounce関数を追加した。
+他ロジックに依存しない独立したUI基盤を事前に用意するため。
