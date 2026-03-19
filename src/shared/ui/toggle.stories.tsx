@@ -1,30 +1,41 @@
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-import type { Meta, StoryObj } from '@storybook/react'
-import { Toggle } from './toggle'
-import { useState } from 'react'
+import { useState } from "react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
+import { Toggle } from "./toggle";
 
-const meta = {
+const meta: Meta<typeof Toggle> = {
   title: 'Shared/UI/Toggle',
   component: Toggle,
   parameters: {
-    layout: 'centered',
+    layout: 'padded',
   },
   tags: ['autodocs'],
-} satisfies Meta<typeof Toggle>
+};
+export default meta;
 
-export default meta
-type Story = StoryObj<typeof meta>
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const ToggleWithState = (args: any) => {
-  const [checked, setChecked] = useState(args.checked || false)
-  return <Toggle {...args} checked={checked} onChange={setChecked} />
-}
+type Story = StoryObj<typeof Toggle>;
 
 export const Default: Story = {
-  render: () => <ToggleWithState checked={false} label="温度を華氏で表示" />,
-}
+  render: () => {
+    const [checked, setChecked] = useState(false);
+    return (
+      <Toggle
+        checked={checked}
+        onChange={setChecked}
+        label="風速をkm/hで表示する"
+      />
+    );
+  },
+};
 
 export const Checked: Story = {
-  render: () => <ToggleWithState checked={true} label="風速を時速(km/h)で表示" />,
-}
+  render: () => {
+    const [checked, setChecked] = useState(true);
+    return (
+      <Toggle
+        checked={checked}
+        onChange={setChecked}
+        label="温度を°Fで表示する"
+      />
+    );
+  },
+};
