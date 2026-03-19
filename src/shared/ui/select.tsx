@@ -8,10 +8,10 @@ interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
 
 export function Select({ className, children, ...props }: SelectProps) {
   return (
-    <div className="relative inline-block w-full">
+    <div className="relative inline-block">
       <select
         className={twMerge(
-          'w-full appearance-none bg-white border border-slate-300 text-slate-700 py-2 pl-3 pr-10 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500',
+          'appearance-none bg-white border border-slate-300 text-slate-700 py-2 pl-3 pr-10 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500',
           className
         )}
         {...props}

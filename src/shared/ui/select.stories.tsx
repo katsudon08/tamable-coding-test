@@ -1,17 +1,17 @@
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 import { Select } from './select'
 
-const meta = {
+const meta: Meta<typeof Select> = {
   title: 'Shared/UI/Select',
   component: Select,
   parameters: {
     layout: 'padded',
   },
   tags: ['autodocs'],
-} satisfies Meta<typeof Select>
+};
+export default meta;
 
-export default meta
-type Story = StoryObj<typeof meta>
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: () => (
@@ -21,4 +21,4 @@ export const Default: Story = {
       <option value="sapporo">札幌</option>
     </Select>
   ),
-}
+};
