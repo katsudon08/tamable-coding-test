@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { CitySelect } from './city-select'
 import { useState } from 'react'
-import { City } from '@/entities/weather/model/types'
+import { City } from '@/entities/weather'
 
 const meta: Meta<typeof CitySelect> = {
   title: 'Features/SelectCity',

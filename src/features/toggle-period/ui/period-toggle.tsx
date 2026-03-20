@@ -1,6 +1,5 @@
 import { Toggle } from '@/shared/ui/toggle'
-import { Period } from '@/entities/weather/model/types'
-import { PERIOD } from '@/entities/weather/constants/periods'
+import { Period, PERIOD } from '@/entities/weather'
 
 interface PeriodToggleProps {
   value: Period

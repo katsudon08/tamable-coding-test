@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { UnitToggle } from './unit-toggle'
 import { useState } from 'react'
-import { UnitState } from '@/entities/weather/model/types'
+import { UnitState } from '@/entities/weather'
 
 const meta: Meta<typeof UnitToggle> = {
   title: 'Features/UnitToggle',

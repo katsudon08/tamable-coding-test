@@ -1,6 +1,5 @@
 import { Checkbox } from '@/shared/ui/checkbox'
-import { Metric, Period } from '@/entities/weather/model/types'
-import { METRICS } from '@/entities/weather/constants/metrics'
+import { Metric, Period, METRICS } from '@/entities/weather'
 
 interface MetricsSelectProps {
   period: Period

@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { MetricsSelect } from './metrics-select'
 import { useState } from 'react'
-import { Metric, Period } from '@/entities/weather/model/types'
+import { Metric, Period } from '@/entities/weather'
 
 const meta: Meta<typeof MetricsSelect> = {
   title: 'Features/MetricsSelect',

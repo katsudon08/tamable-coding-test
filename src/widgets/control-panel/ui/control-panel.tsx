@@ -1,4 +1,4 @@
-import { City, Metric, Period, UnitState } from '@/entities/weather/model/types'
+import { City, Metric, Period, UnitState } from '@/entities/weather'
 import { CitySelect } from '@/features/select-city'
 import { MetricsSelect } from '@/features/select-metrics'
 import { PeriodToggle } from '@/features/toggle-period'

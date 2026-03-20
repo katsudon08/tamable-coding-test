@@ -1,6 +1,5 @@
 import { Toggle } from '@/shared/ui/toggle'
-import { UnitState } from '@/entities/weather/model/types'
-import { TEMP_UNIT, WIND_UNIT } from '@/entities/weather/constants/units'
+import { UnitState, TEMP_UNIT, WIND_UNIT } from '@/entities/weather'
 
 interface UnitToggleProps {
   tempUnit: UnitState['temp']

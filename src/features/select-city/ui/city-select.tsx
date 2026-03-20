@@ -1,6 +1,5 @@
 import { Select } from '@/shared/ui/select'
-import { City } from '@/entities/weather/model/types'
-import { CITIES } from '@/entities/weather/constants/cities'
+import { City, CITIES } from '@/entities/weather'
 
 interface CitySelectProps {
   value: City

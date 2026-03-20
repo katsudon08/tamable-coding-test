@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { PeriodToggle } from './period-toggle'
 import { useState } from 'react'
-import { Period } from '@/entities/weather/model/types'
+import { Period } from '@/entities/weather'
 
 const meta: Meta<typeof PeriodToggle> = {
   title: 'Features/PeriodToggle',

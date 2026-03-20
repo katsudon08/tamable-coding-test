@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { ControlPanel } from './control-panel'
 import { useState } from 'react'
-import { City, Metric, Period, UnitState } from '@/entities/weather/model/types'
+import { City, Metric, Period, UnitState } from '@/entities/weather'
 
 const meta: Meta<typeof ControlPanel> = {
   title: 'Widgets/ControlPanel',
