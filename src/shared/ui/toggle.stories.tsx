@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Toggle } from "./toggle";
 
 const meta: Meta<typeof Toggle> = {
-  title: 'Shared/UI/Toggle',
+  title: 'Shared/Toggle',
   component: Toggle,
   parameters: {
     layout: 'padded',

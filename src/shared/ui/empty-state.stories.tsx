@@ -3,7 +3,7 @@ import { EmptyState } from './empty-state'
 import { MapPin } from 'lucide-react'
 
 const meta: Meta<typeof EmptyState> = {
-  title: 'Shared/UI/EmptyState',
+  title: 'Shared/EmptyState',
   component: EmptyState,
   parameters: {
     layout: 'padded',

@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite'
 import { Select } from './select'
 
 const meta: Meta<typeof Select> = {
-  title: 'Shared/UI/Select',
+  title: 'Shared/Select',
   component: Select,
   parameters: {
     layout: 'padded',
