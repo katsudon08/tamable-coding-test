@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 import { CitySelect } from './city-select'
 import { useState } from 'react'
 import { City } from '@/entities/weather'

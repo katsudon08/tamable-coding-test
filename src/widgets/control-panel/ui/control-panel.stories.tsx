@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 import { ControlPanel } from './control-panel'
 import { useState } from 'react'
 import { City, Metric, Period, UnitState } from '@/entities/weather'

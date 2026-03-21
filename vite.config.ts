@@ -16,6 +16,9 @@ export default defineConfig({
   resolve: {
     tsconfigPaths: true
   },
+  optimizeDeps: {
+    include: ['react-is']
+  },
   test: {
     projects: [{
       extends: true,

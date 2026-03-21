@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 import { PeriodToggle } from './period-toggle'
 import { useState } from 'react'
 import { Period } from '@/entities/weather'

@@ -28,3 +28,6 @@ export { TEMP_UNIT, WIND_UNIT } from './constants/units'
 // lib
 export { convertTemp, convertWindSpeed } from './lib/unit-converter'
 export { formatHourlyData, formatDailyData } from './lib/weather-formatter'
+
+// ui
+export { WeatherChart } from './ui/weather-chart'
