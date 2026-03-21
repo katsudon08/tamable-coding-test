@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite'
 import { ErrorMessage } from './error-message'
 
 const meta: Meta<typeof ErrorMessage> = {
-  title: 'Shared/UI/ErrorMessage',
+  title: 'Shared/ErrorMessage',
   component: ErrorMessage,
   parameters: {
     layout: 'padded',
