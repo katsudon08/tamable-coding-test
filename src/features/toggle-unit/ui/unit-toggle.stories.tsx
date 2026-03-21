@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 import { UnitToggle } from './unit-toggle'
 import { useState } from 'react'
 import { UnitState } from '@/entities/weather'

@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 import { MetricsSelect } from './metrics-select'
 import { useState } from 'react'
 import { Metric, Period } from '@/entities/weather'
