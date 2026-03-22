@@ -12,10 +12,10 @@ export const formatHourlyData = (data: HourlyResponse, unitState: UnitState): Ch
 
   return time.map((t, index) => ({
     time: t,
-    temperature_2m: convertTemp(temperature_2m[index], isFahrenheit),
-    apparent_temperature: convertTemp(apparent_temperature[index], isFahrenheit),
-    precipitation: precipitation[index],
-    windspeed_10m: convertWindSpeed(windspeed_10m[index], isKmh),
+    temperature_2m: temperature_2m ? convertTemp(temperature_2m[index], isFahrenheit) : undefined,
+    apparent_temperature: apparent_temperature ? convertTemp(apparent_temperature[index], isFahrenheit) : undefined,
+    precipitation: precipitation ? precipitation[index] : undefined,
+    windspeed_10m: windspeed_10m ? convertWindSpeed(windspeed_10m[index], isKmh) : undefined,
   }))
 }
 
@@ -29,7 +29,7 @@ export const formatDailyData = (data: DailyResponse, unitState: UnitState): Char
 
   return time.map((t, index) => ({
     time: t,
-    temperature_2m_max: convertTemp(temperature_2m_max[index], isFahrenheit),
-    temperature_2m_min: convertTemp(temperature_2m_min[index], isFahrenheit),
+    temperature_2m_max: temperature_2m_max ? convertTemp(temperature_2m_max[index], isFahrenheit) : undefined,
+    temperature_2m_min: temperature_2m_min ? convertTemp(temperature_2m_min[index], isFahrenheit) : undefined,
   }))
 }

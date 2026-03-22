@@ -43,9 +43,10 @@ describe('weather-api', () => {
       expect(requestedUrl.searchParams.get('longitude')).toBe(
         CITIES.tokyo.lon.toString(),
       )
-      expect(requestedUrl.searchParams.get('hourly')).toBe(
-        'temperature_2m,apparent_temperature',
-      )
+      expect(requestedUrl.searchParams.getAll('hourly')).toEqual([
+        'temperature_2m',
+        'apparent_temperature',
+      ])
       expect(requestedUrl.searchParams.get('forecast_days')).toBe('2')
       expect(requestedUrl.searchParams.get('temperature_unit')).toBe('celsius')
 
@@ -80,7 +81,10 @@ describe('weather-api', () => {
         }),
       })
 
-      const res = await fetchDailyWeather({ city: 'osaka' })
+      const res = await fetchDailyWeather({
+        city: 'osaka',
+        metrics: ['temperature_2m_max', 'temperature_2m_min'],
+      })
 
       expect(mockFetch).toHaveBeenCalledTimes(1)
       const requestedUrlString = mockFetch.mock.calls[0][0]
@@ -95,9 +99,10 @@ describe('weather-api', () => {
       expect(requestedUrl.searchParams.get('longitude')).toBe(
         CITIES.osaka.lon.toString(),
       )
-      expect(requestedUrl.searchParams.get('daily')).toBe(
-        'temperature_2m_max,temperature_2m_min',
-      )
+      expect(requestedUrl.searchParams.getAll('daily')).toEqual([
+        'temperature_2m_max',
+        'temperature_2m_min',
+      ])
       expect(requestedUrl.searchParams.get('forecast_days')).toBe('7')
 
       expect(res.timezone).toBe('Asia/Tokyo')
@@ -109,9 +114,9 @@ describe('weather-api', () => {
         ok: false,
       })
 
-      await expect(fetchDailyWeather({ city: 'osaka' })).rejects.toThrow(
-        'Failed to fetch daily weather data',
-      )
+      await expect(
+        fetchDailyWeather({ city: 'osaka', metrics: ['temperature_2m_max'] }),
+      ).rejects.toThrow('Failed to fetch daily weather data')
     })
   })
 })
