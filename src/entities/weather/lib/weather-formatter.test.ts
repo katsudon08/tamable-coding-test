@@ -61,6 +61,27 @@ describe('weather-formatter', () => {
         windspeed_10m: 7.2 // 2 * 3.6
       })
     })
+
+    it('一部の指標が欠落していてもエラーにならずundefinedを返すこと', () => {
+      const incompleteData: HourlyResponse = {
+        ...mockHourlyData,
+        hourly: {
+          time: ['2024-01-01T00:00'],
+          temperature_2m: [10],
+          // 他の指標が欠落
+        } as any
+      }
+      const unitState: UnitState = { temp: 'C', wind: 'ms' }
+      const result = formatHourlyData(incompleteData, unitState)
+
+      expect(result[0]).toEqual({
+        time: '2024-01-01T00:00',
+        temperature_2m: 10,
+        apparent_temperature: undefined,
+        precipitation: undefined,
+        windspeed_10m: undefined
+      })
+    })
   })
 
   describe('formatDailyData', () => {
@@ -84,6 +105,25 @@ describe('weather-formatter', () => {
         time: '2024-01-01',
         temperature_2m_max: 59, // 15 * 1.8 + 32
         temperature_2m_min: 41  // 5 * 1.8 + 32
+      })
+    })
+
+    it('一部の指標が欠落していてもエラーにならずundefinedを返すこと', () => {
+      const incompleteData: DailyResponse = {
+        ...mockDailyData,
+        daily: {
+          time: ['2024-01-01'],
+          temperature_2m_max: [15],
+          // temperature_2m_min が欠落
+        } as any
+      }
+      const unitState: UnitState = { temp: 'C', wind: 'ms' }
+      const result = formatDailyData(incompleteData, unitState)
+
+      expect(result[0]).toEqual({
+        time: '2024-01-01',
+        temperature_2m_max: 15,
+        temperature_2m_min: undefined
       })
     })
   })

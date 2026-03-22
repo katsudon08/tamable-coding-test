@@ -3,6 +3,7 @@ import {
   City,
   DailyResponse,
   HourlyMetric,
+  DailyMetric,
   HourlyResponse,
 } from '../model/types'
 
@@ -15,6 +16,7 @@ export type FetchHourlyParams = {
 
 export type FetchDailyParams = {
   city: City
+  metrics: DailyMetric[]
 }
 
 export const fetchHourlyWeather = async ({
@@ -22,12 +24,11 @@ export const fetchHourlyWeather = async ({
   metrics,
 }: FetchHourlyParams): Promise<HourlyResponse> => {
   const { lat, lon } = CITIES[city]
-  const metricsParam = metrics.join(',')
 
   const url = new URL(OPEN_METEO_BASE_URL)
   url.searchParams.append('latitude', lat.toString())
   url.searchParams.append('longitude', lon.toString())
-  url.searchParams.append('hourly', metricsParam)
+  metrics.forEach((m) => url.searchParams.append('hourly', m))
   url.searchParams.append('forecast_days', '2')
   url.searchParams.append('timezone', 'auto')
   url.searchParams.append('temperature_unit', 'celsius')
@@ -41,13 +42,14 @@ export const fetchHourlyWeather = async ({
 
 export const fetchDailyWeather = async ({
   city,
+  metrics,
 }: FetchDailyParams): Promise<DailyResponse> => {
   const { lat, lon } = CITIES[city]
 
   const url = new URL(OPEN_METEO_BASE_URL)
   url.searchParams.append('latitude', lat.toString())
   url.searchParams.append('longitude', lon.toString())
-  url.searchParams.append('daily', 'temperature_2m_max,temperature_2m_min')
+  metrics.forEach((m) => url.searchParams.append('daily', m))
   url.searchParams.append('forecast_days', '7')
   url.searchParams.append('timezone', 'auto')
   url.searchParams.append('temperature_unit', 'celsius')

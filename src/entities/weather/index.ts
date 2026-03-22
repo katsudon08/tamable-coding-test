@@ -29,5 +29,12 @@ export { TEMP_UNIT, WIND_UNIT } from './constants/units'
 export { convertTemp, convertWindSpeed } from './lib/unit-converter'
 export { formatHourlyData, formatDailyData } from './lib/weather-formatter'
 
+// model/weather-store
+export { useWeatherStore } from './model/weather-store'
+export type { WeatherStore } from './model/weather-store'
+
+// model/use-weather-query
+export { useWeatherQuery } from './model/use-weather-query'
+
 // ui
 export { WeatherChart } from './ui/weather-chart'
