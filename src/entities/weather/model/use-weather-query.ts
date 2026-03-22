@@ -1,4 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
+import { useMemo } from 'react'
 import {
     City,
     Period,
@@ -10,6 +11,7 @@ import {
     HourlyResponse,
     DailyResponse,
 } from './types'
+import { useDebouncedValue } from '@/shared/lib/use-debounced-value'
 import { fetchHourlyWeather, fetchDailyWeather } from '../api/weather-api'
 import { formatHourlyData, formatDailyData } from '../lib/weather-formatter'
 
@@ -28,29 +30,47 @@ export const useWeatherQuery = (
     metrics: Metric[],
     unitState: UnitState,
 ) => {
+    // APIリクエストの頻度を抑制するため、入力をデバウンスする
+    // 引数オブジェクトがレンダリングのたびに再生成されないようuseMemoを使用
+    const debouncedParams = useDebouncedValue(
+        useMemo(() => ({ city, period, metrics, unitState }), [
+            city,
+            period,
+            metrics,
+            unitState,
+        ]),
+        300,
+    )
+    const {
+        city: dCity,
+        period: dPeriod,
+        metrics: dMetrics,
+        unitState: dUnitState,
+    } = debouncedParams
+
     return useQuery<ChartDataPoint[]>({
-        queryKey: ['weather', city, period, [...metrics].sort(), unitState],
+        queryKey: ['weather', dCity, dPeriod, [...dMetrics].sort(), dUnitState],
         queryFn: async () => {
-            if (period === '48h') {
-                const hourlyMetrics = metrics.filter(
+            if (dPeriod === '48h') {
+                const hourlyMetrics = dMetrics.filter(
                     (m): m is HourlyMetric =>
                         HOURLY_METRICS.includes(m as HourlyMetric),
                 )
                 const response: HourlyResponse = await fetchHourlyWeather({
-                    city,
+                    city: dCity,
                     metrics: hourlyMetrics,
                 })
-                return formatHourlyData(response, unitState)
+                return formatHourlyData(response, dUnitState)
             } else {
-                const dailyMetrics = metrics.filter(
+                const dailyMetrics = dMetrics.filter(
                     (m): m is DailyMetric =>
                         DAILY_METRICS.includes(m as DailyMetric),
                 )
                 const response: DailyResponse = await fetchDailyWeather({
-                    city,
+                    city: dCity,
                     metrics: dailyMetrics,
                 })
-                return formatDailyData(response, unitState)
+                return formatDailyData(response, dUnitState)
             }
         },
         staleTime: 5 * 60 * 1000,
