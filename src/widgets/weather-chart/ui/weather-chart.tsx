@@ -1,3 +1,4 @@
+import { BarChart3 } from 'lucide-react'
 import { WeatherChart as EntityWeatherChart } from '@/entities/weather'
 import { Spinner } from '@/shared/ui/spinner'
 import { ErrorMessage } from '@/shared/ui/error-message'
@@ -23,6 +24,19 @@ export function WeatherChartWidget({
   period,
   unitState,
 }: WeatherChartWidgetProps) {
+  // 指標が1つも選択されていない場合の表示を、ロードやエラーより優先する
+  if (metrics.length === 0) {
+    return (
+      <div className="w-full min-h-[400px] flex items-center justify-center bg-slate-50 rounded-xl border border-slate-200">
+        <EmptyState
+          title="表示指標を選択してください"
+          description="上のパネルから気温、降水量、風速などの指標を1つ以上選択すると、グラフが表示されます。"
+          icon={<BarChart3 size={48} />}
+        />
+      </div>
+    )
+  }
+
   if (isLoading) {
     return (
       <div className="w-full min-h-[400px] flex items-center justify-center bg-slate-50 rounded-xl border border-slate-200">
