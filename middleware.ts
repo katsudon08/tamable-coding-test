@@ -16,7 +16,7 @@ export default function middleware(req: Request) {
         password === process.env.BASIC_AUTH_PASS
       ) {
         // 認証OK → そのまま通す
-        return new Response(null, { status: 200 });
+        return;
       }
     }
   }
